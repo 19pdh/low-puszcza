@@ -1,0 +1,5 @@
+bin
+output
+saait
+*.o
+*.core
