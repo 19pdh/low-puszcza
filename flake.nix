@@ -31,6 +31,7 @@
         sed -i 's:rev:${pkgs.busybox}/bin/rev:g' ./md2saait/getdate
 
         cp ${kronika}/wpisy wpisy -r
+        mkdir pages
         for f in `find wpisy -name '*.md'`; do
           name=$(basename $f .md)
           d=$(./md2saait/getdate $f)
