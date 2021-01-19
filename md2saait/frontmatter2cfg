@@ -1,0 +1,11 @@
+#!/bin/sh
+#/usr/bin/env nix-shell
+#nix-shell -i sh -p yq
+## Script for extracting frontmatter data and converting it into .cfg files required by saait
+##
+## Usage:
+## $ ./frontmatter2cfg [.md FILE]
+
+INPUT=$1
+
+sed -n '/---/,/---/p' $INPUT | tail -n +2 | head -n -1 | yq '{title: .title, created: .date, updated: .date, keywords: .title, image: .image}' -y | sed "/\(created\|updated\)/s/T.*'/'/" | sed "s/:/ =/"

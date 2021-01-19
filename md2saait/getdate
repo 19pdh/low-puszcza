@@ -1,0 +1,4 @@
+#!/bin/sh
+
+frontmatter2cfg $1 | grep created | \
+  cut -d' ' -f 3 | cut -c 2- | rev | cut -c 2- | rev
