@@ -1,0 +1,23 @@
+name: Update sha256
+
+on: [repository_dispatch]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Installing Nix
+        uses: cachix/install-nix-action@v12
+
+      - name: update.sh
+        run: |
+          nix-shell -p nix-prefetch-git -c 'update.sh'
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: github-actions[bot]
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: '[🤖] Update kronika.json'
+          add: 'kronika.json'
