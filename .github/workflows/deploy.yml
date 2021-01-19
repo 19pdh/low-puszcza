@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+  repository_dispatch:
+    types: [update]
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -25,6 +28,19 @@ jobs:
       with:
         name: pn
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+
+    - name: update.sh
+      if: github.event.action == 'update'
+      run: |
+        nix-shell -p nix-prefetch-git --command './update.sh'
+    - name: Commit changes
+      if: github.event.action == 'update'
+      uses: EndBug/add-and-commit@v7
+      with:
+        author_name: github-actions[bot]
+        author_email: 41898282+github-actions[bot]@users.noreply.github.com
+        message: '[🤖] Update kronika.json'
+        add: 'kronika.json'
 
     - name: Building site
       run: |
