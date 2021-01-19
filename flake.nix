@@ -15,8 +15,7 @@
       nativeBuildInputs = [ pkgs.zip pkgs.nur.repos.pn.saait ];
 
       installPhase = ''
-        mkdir $out
-        cp -r output $out/
+        cp -r output $out
       '';
     };
 
