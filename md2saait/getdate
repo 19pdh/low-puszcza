@@ -1,4 +1,5 @@
 #!/bin/sh
 
-frontmatter2cfg $1 | grep created | \
-  cut -d' ' -f 3 | cut -c 2- | rev | cut -c 2- | rev
+cfg=`./md2saait/frontmatter2cfg $1 | grep created`
+date=`echo $cfg | cut -d' ' -f 3`
+echo $date

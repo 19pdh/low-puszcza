@@ -8,4 +8,4 @@
 
 INPUT=$1
 
-sed -n '/---/,/---/p' $INPUT | tail -n +2 | head -n -1 | yq '{title: .title, created: .date, updated: .date, keywords: .title, image: .image}' -y | sed "/\(created\|updated\)/s/T.*'/'/" | sed "s/:/ =/"
+sed -n '/---/,/---/p' $INPUT | tail -n +2 | head -n -1 | yq '{title: .title, created: .date, updated: .date, keywords: .title, image: .image}' -y | sed "/\(created\|updated\)/s/T.*'/'/" | sed "s/:/ =/" | sed "s/'//g"
