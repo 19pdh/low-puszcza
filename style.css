@@ -20,6 +20,7 @@ article, figcaption, figure, header, main, nav {
 table, img {
   border: 0;
 }
+img { max-width: 80ex; }
 hr {
   border: 0;
   border-bottom: 3px solid #aaa;
