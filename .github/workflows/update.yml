@@ -13,7 +13,7 @@ jobs:
 
       - name: update.sh
         run: |
-          nix-shell -p nix-prefetch-git -c 'update.sh'
+          nix-shell -p nix-prefetch-git --command './update.sh'
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
         with:
