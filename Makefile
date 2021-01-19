@@ -1,5 +1,6 @@
 generate:
 	mkdir -p output
+	cp favicon.ico output
 	find pages -type f -name '*.cfg' -print0 | sort -zr | xargs -0 saait
 	cp style.css print.css output/
 	zip -r kronika.zip output
