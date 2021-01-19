@@ -11,7 +11,7 @@
       repo = "kronika";
       owner = "19pdh";
       rev = "master";
-      sha256 = "1pafahvq8xhpba2hgpipkbnhjr3j9zchnxfq4pnxqvidwz5rqr51";
+      sha256 = (builtins.fromJSON (builtins.readFile ./kronika.json)).sha256;
     };
 
   in {
