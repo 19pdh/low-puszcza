@@ -33,7 +33,7 @@ jobs:
         name: pn
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
 
-    - name: Building nixos.org
+    - name: Building site
       run: |
         nix build
         mkdir build
