@@ -7,11 +7,13 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; overlays = [ nur.overlay ]; };
 
-    kronika = pkgs.fetchFromGitHub {
+    kronika = let
+      kronika_json = builtins.fromJSON (builtins.readFile ./kronika.json);
+    in pkgs.fetchFromGitHub {
       repo = "kronika";
       owner = "19pdh";
-      rev = "master";
-      sha256 = (builtins.fromJSON (builtins.readFile ./kronika.json)).sha256;
+      rev = kronika_json.rev;
+      sha256 = kronika_json.sha256;
     };
 
   in {
