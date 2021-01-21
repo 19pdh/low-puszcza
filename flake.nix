@@ -8,7 +8,7 @@
     pkgs = import nixpkgs { inherit system; overlays = [ nur.overlay ]; };
 
     kronika = let
-      kronika_json = builtins.fromJSON (builtins.readFile ./kronika.json);
+      kronika_json = pkgs.lib.importJSON ./kronika.json;
     in pkgs.fetchFromGitHub {
       repo = "kronika";
       owner = "19pdh";
