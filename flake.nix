@@ -1,12 +1,12 @@
 {
   description = "19 PDH Puszcza low-tech site";
   inputs.nur.url = github:nix-community/NUR;
+  inputs.flake-utils.url = "github:numtide/flake-utils";
 
-  outputs = { self, nixpkgs, nur }:
+  outputs = { self, nixpkgs, nur, flake-utils }:
+  flake-utils.lib.eachDefaultSystem (system:
   let
-    system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; overlays = [ nur.overlay ]; };
-
     kronika = let
       kronika_json = pkgs.lib.importJSON ./kronika.json;
     in pkgs.fetchFromGitHub {
@@ -16,10 +16,8 @@
       sha256 = kronika_json.sha256;
     };
 
-  in {
-    defaultPackage.${system} = self.packages.${system}.low-puszcza;
 
-    packages.${system}.low-puszcza = pkgs.stdenv.mkDerivation {
+    low-puszcza = pkgs.stdenv.mkDerivation {
       name = "low-puszcza";
       src = self;
       nativeBuildInputs = [
@@ -50,5 +48,9 @@
       '';
     };
 
-  };
+
+  in {
+    defaultPackage = low-puszcza;
+    packages.low-puszcza = low-puszcza;
+  });
 }
