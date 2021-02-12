@@ -47,6 +47,12 @@ jobs:
         nix build
         mkdir build
         cp -RL ./result/* ./build/
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: site
+        path: ./result
+
     - name: Deploy to Netlify
       uses: nwtgck/actions-netlify@v1.1
       env:
