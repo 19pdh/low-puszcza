@@ -51,7 +51,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: site
-        path: ./result
+        path: ./build
 
     - name: Deploy to Netlify
       uses: nwtgck/actions-netlify@v1.1
