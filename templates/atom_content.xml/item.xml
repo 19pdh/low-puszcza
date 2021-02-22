@@ -9,7 +9,7 @@
 		<uri>${siteurl}</uri>
 	</author>
 	<summary type="text">${description}</summary>
-	<content type="html"><![CDATA[<h1>${title}</h1>
+  <content type="html"><![CDATA[<img src="${image}"/><h1>${title}</h1>
 	<p><strong>Last modification on </strong> <time>${updated}</time></p>
 	%{contentfile}]]></content>
 </entry>
